@@ -133,6 +133,7 @@ set smartcase               " case-sensitive if expresson contains a capital let
 set hlsearch                " highlight search results
 set incsearch               " set incremental search, like modern browsers
 set nolazyredraw            " don't redraw while executing macros
+set autowrite
 
 set magic                   " Set magic on, for regex
 
@@ -168,6 +169,9 @@ nmap <leader>, :w<cr>
 
 " set paste toggle
 set pastetoggle=<leader>v
+
+nmap <F8> :TagbarToggle<CR>
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 " toggle paste mode
 " map <leader>v :set paste!<cr>
@@ -205,10 +209,13 @@ nmap <leader>. <c-^>
 " enable . command in visual mode
 vnoremap . :normal .<cr>
 
-map <silent> <C-h> :call functions#WinMove('h')<cr>
-map <silent> <C-j> :call functions#WinMove('j')<cr>
-map <silent> <C-k> :call functions#WinMove('k')<cr>
-map <silent> <C-l> :call functions#WinMove('l')<cr>
+" map <silent> <C-h> :call functions#WinMove('h')<cr>
+" map <silent> <C-j> :call functions#WinMove('j')<cr>
+" map <silent> <C-k> :call functions#WinMove('k')<cr>
+" map <silent> <C-l> :call functions#WinMove('l')<cr>
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 map <leader>wc :wincmd q<cr>
 
@@ -359,6 +366,7 @@ let g:ale_change_sign_column_color = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
+let g:ale_cpp_clangcheck_options = '-extra-arg="-std=c++14"'
 " highlight clear ALEErrorSign
 " highlight clear ALEWarningSign
 
@@ -368,7 +376,6 @@ let g:ale_linters = {
 \	'html': []
 \}
 
-let g:ale_cpp_clangcheck_options = '-extra-arg="-std=c++14"'
 
 " airline options
 "
@@ -381,6 +388,7 @@ let g:airline#extensions#tabline#enabled = 1 " enable airline tabline
 let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if tabs are being used (more than 1 tab open)
 let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
 let g:airline#extensions#tabline#show_splits = 0
+" let g:airline#extensions#ale#enabled = 1
 
 " don't hide quotes in json files
 let g:vim_json_syntax_conceal = 0
@@ -388,7 +396,7 @@ let g:vim_json_syntax_conceal = 0
 let g:SuperTabCrMapping = 0
 " }}}
 
-" Use deoplete. 
+" Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
 
