@@ -20,8 +20,8 @@ set textwidth=120
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-let g:python_host_prog = '/usr/local/bin/python2'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
 
 if (has('nvim'))
 	" show results of substition as they're happening
@@ -59,8 +59,8 @@ else
 	let g:onedark_terminal_italics=1
 
 	colorscheme onedark
-	"colorscheme gruvbox
 endif
+
 
 " make the highlighting of tabs and other non-text less annoying
 highlight SpecialKey ctermfg=236
@@ -368,11 +368,15 @@ let g:ale_linters = {
 \	'html': []
 \}
 
+let g:ale_cpp_clangcheck_options = '-extra-arg="-std=c++14"'
+
 " airline options
+"
+let g:airline_mode_map = { 'n' : 'N', 'i' : 'I', 'R' : 'REPLACE', 'v' : 'VISUAL', 'V' : 'V-LINE', 'c' : 'CMD'}
 let g:airline_powerline_fonts=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='base16'
+let g:airline_theme='term'
 let g:airline#extensions#tabline#enabled = 1 " enable airline tabline
 let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if tabs are being used (more than 1 tab open)
 let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
@@ -383,5 +387,22 @@ let g:vim_json_syntax_conceal = 0
 
 let g:SuperTabCrMapping = 0
 " }}}
+
+" Use deoplete. 
+let g:deoplete#enable_at_startup = 1
+
+
+au FileType go nmap <leader>gr <Plug>(go-run)
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gt <Plug>(go-test)
+au FileType go nmap <leader>gc <Plug>(go-coverage)
+
+au FileType go nmap <leader>gd <Plug>(go-doc)
+au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>gg <Plug>(go-doc-browser)
+au FileType go nmap <leader>gs <Plug>(go-implements)
+au FileType go nmap <leader>gi <Plug>(go-info)
+au FileType go nmap <leader>ge <Plug>(go-rename)
+
 
 " vim:foldmethod=marker:foldlevel=0
