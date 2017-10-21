@@ -96,7 +96,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 set backspace=indent,eol,start
 
 " Tab control
-set noexpandtab             " insert tabs rather than spaces for <Tab>
+set expandtab             " insert tabs rather than spaces for <Tab>
 set smarttab                " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set tabstop=4               " the visible width of tabs
 set softtabstop=4           " edit as if the tabs are 4 characters wide
@@ -177,7 +177,9 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 " map <leader>v :set paste!<cr>
 
 " edit ~/.config/nvim/init.vim
-map <leader>ev :e! ~/.config/nvim/init.vim<cr>
+map <leader>ev :tabnew! ~/.config/nvim/init.vim<cr>
+map <leader>ep :tabnew! ~/.config/nvim/plugins.vim<cr>
+
 " edit gitconfig
 map <leader>eg :e! ~/.gitconfig<cr>
 

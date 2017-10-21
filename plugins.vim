@@ -41,7 +41,8 @@ Plug 'w0rp/ale' " Asynchonous linting engine
 Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
 Plug 'tpope/vim-rhubarb' " hub extension for fugitive
 Plug 'tpope/vim-repeat' " enables repeating other supported plugins with the . command
-Plug 'garbas/vim-snipmate' " snippet manager
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'editorconfig/editorconfig-vim' " .editorconfig support
 Plug 'MarcWeber/vim-addon-mw-utils' " interpret a file by function and cache file automatically
 Plug 'tomtom/tlib_vim' " utility functions for vim
@@ -53,7 +54,6 @@ Plug 'AndrewRadev/splitjoin.vim' " single/multi line code handler: gS - split on
 Plug 'vim-scripts/matchit.zip' " extended % matching
 Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
 Plug 'sickill/vim-pasta' " context-aware pasting
-
 
 Plug 'rizzatti/dash.vim'
 
@@ -106,8 +106,15 @@ Plug 'sbdchd/neoformat'
 
 " Autocomplete 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" For func argument completion
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+
 Plug 'sebastianmarkow/deoplete-rust'
 Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'wokalski/autocomplete-flow'
 
 call plug#end()
 
