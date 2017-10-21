@@ -1,5 +1,4 @@
 source ~/.config/nvim/plugins.vim
-
 " Section General {{{
 
 " Abbreviations
@@ -24,9 +23,9 @@ let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
 if (has('nvim'))
-	" show results of substition as they're happening
-	" but don't open a split
-	set inccommand=nosplit
+  " show results of substition as they're happening
+  " but don't open a split
+  set inccommand=nosplit
 endif
 
 " }}}
@@ -38,27 +37,28 @@ set t_Co=256                " Explicitly tell vim that the terminal supports 256
 
 " switch cursor to line when in insert mode, and block when not
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-  \,sm:block-blinkwait175-blinkoff150-blinkon175
+      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+      \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 if &term =~ '256color'
-    " disable background color erase
-    set t_ut=
+  " disable background color erase
+  set t_ut=
 endif
 
 " enable 24 bit color support if supported
 if (has('mac') && empty($TMUX) && has("termguicolors"))
-    set termguicolors
+  set termguicolors
 endif
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 else
-	let g:onedark_termcolors=16
-	let g:onedark_terminal_italics=1
+  let g:onedark_termcolors=16
+  let g:onedark_terminal_italics=1
 
-	colorscheme onedark
+  set background=dark
+  colorscheme one
 endif
 
 
@@ -147,8 +147,8 @@ set t_vb=
 set tm=500
 
 if has('mouse')
-	set mouse=a
-	" set ttymouse=xterm2
+  set mouse=a
+  " set ttymouse=xterm2
 endif
 
 " }}}
@@ -265,26 +265,26 @@ command! RM call functions#Delete() <Bar> q!
 " Section AutoGroups {{{
 " file type specific settings
 augroup configgroup
-    autocmd!
+  autocmd!
 
-    " automatically resize panes on resize
-    autocmd VimResized * exe 'normal! \<c-w>='
-    autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
-    autocmd BufWritePost .vimrc.local source %
-    " save all files on focus lost, ignoring warnings about untitled buffers
-    autocmd FocusLost * silent! wa
+  " automatically resize panes on resize
+  autocmd VimResized * exe 'normal! \<c-w>='
+  autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
+  autocmd BufWritePost .vimrc.local source %
+  " save all files on focus lost, ignoring warnings about untitled buffers
+  autocmd FocusLost * silent! wa
 
-    " make quickfix windows take all the lower section of the screen
-    " when there are multiple windows open
-    autocmd FileType qf wincmd J
-    autocmd FileType qf nmap q :q<cr>
+  " make quickfix windows take all the lower section of the screen
+  " when there are multiple windows open
+  autocmd FileType qf wincmd J
+  autocmd FileType qf nmap q :q<cr>
 
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+  let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
 
-    " autocmd! BufEnter * call functions#ApplyLocalSettings(expand('<afile>:p:h'))
+  " autocmd! BufEnter * call functions#ApplyLocalSettings(expand('<afile>:p:h'))
 
-    autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
+  autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
 augroup END
 
 " }}}
@@ -298,6 +298,8 @@ nmap <silent> <leader>pt :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
 nmap <silent> <leader>y :NERDTreeFind<cr>
 
+map <silent> <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
 let NERDTreeShowHidden=1
 let NERDTreeDirArrowExpandable = '▷'
 let NERDTreeDirArrowCollapsible = '▼'
@@ -305,11 +307,11 @@ let NERDTreeDirArrowCollapsible = '▼'
 let g:fzf_layout = { 'down': '~25%' }
 
 if isdirectory(".git")
-    " if in a git project, use :GFiles
-    nmap <silent> <leader>t :GFiles --cached --others --exclude-standard<cr>
+  " if in a git project, use :GFiles
+  nmap <silent> <leader>t :GFiles --cached --others --exclude-standard<cr>
 else
-    " otherwise, use :FZF
-    nmap <silent> <leader>t :FZF<cr>
+  " otherwise, use :FZF
+  nmap <silent> <leader>t :FZF<cr>
 endif
 
 nmap <silent> <leader>r :Buffers<cr>
@@ -325,31 +327,31 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 nnoremap <silent> <Leader>C :call fzf#run({
-\   'source':
-\     map(split(globpath(&rtp, "colors/*.vim"), "\n"),
-\         "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
-\   'sink':    'colo',
-\   'options': '+m',
-\   'left':    30
-\ })<CR>
+      \   'source':
+      \     map(split(globpath(&rtp, "colors/*.vim"), "\n"),
+      \         "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
+      \   'sink':    'colo',
+      \   'options': '+m',
+      \   'left':    30
+      \ })<CR>
 
 command! FZFMru call fzf#run({
-\  'source':  v:oldfiles,
-\  'sink':    'e',
-\  'options': '-m -x +s',
-\  'down':    '40%'})
+      \  'source':  v:oldfiles,
+      \  'sink':    'e',
+      \  'options': '-m -x +s',
+      \  'down':    '40%'})
 
 command! -bang -nargs=* Find call fzf#vim#grep(
-	\ 'rg --column --line-number --no-heading --follow --color=always '.<q-args>, 1,
-	\ <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
+      \ 'rg --column --line-number --no-heading --follow --color=always '.<q-args>, 1,
+      \ <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
 
 " Emmet
 """""""""""""""""""""""""""""""""""""
 let g:user_emmet_settings = {
-\  'javascript.jsx': {
-\      'extends': 'jsx',
-\  },
-\}
+      \  'javascript.jsx': {
+      \      'extends': 'jsx',
+      \  },
+      \}
 
 " Fugitive Shortcuts
 """""""""""""""""""""""""""""""""""""
@@ -371,10 +373,10 @@ let g:ale_cpp_clangcheck_options = '-extra-arg="-std=c++14"'
 " highlight clear ALEWarningSign
 
 let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'typescript': ['tslint', 'tsserver'],
-\	'html': []
-\}
+      \   'javascript': ['eslint'],
+      \   'typescript': ['tslint', 'tsserver'],
+      \	'html': []
+      \}
 
 
 " airline options
@@ -383,7 +385,8 @@ let g:airline_mode_map = { 'n' : 'N', 'i' : 'I', 'R' : 'REPLACE', 'v' : 'VISUAL'
 let g:airline_powerline_fonts=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='term'
+" let g:airline_theme='term'
+let g:airline_theme='one'
 let g:airline#extensions#tabline#enabled = 1 " enable airline tabline
 let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if tabs are being used (more than 1 tab open)
 let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
@@ -411,6 +414,17 @@ au FileType go nmap <leader>gg <Plug>(go-doc-browser)
 au FileType go nmap <leader>gs <Plug>(go-implements)
 au FileType go nmap <leader>gi <Plug>(go-info)
 au FileType go nmap <leader>ge <Plug>(go-rename)
+
+
+" rust auto complete
+let g:deoplete#sources#rust#racer_binary='/home/fm/.cargo/bin/racer'
+let g:deoplete#sources#rust#show_duplicates=1
+" let g:deoplete#sources#rust#disable_keymap=1
+let g:deoplete#sources#rust#documentation_max_height=20
+let g:deoplete#sources#rust#rust_source_path='/home/fm/src/rust/src'
+
+let g:deoplete#sources#clang#libclang_path='/usr/lib/x86_64-linux-gnu/libclang-5.0.so'
+let g:deoplete#sources#clang#clang_header='/usr/include/clang/'
 
 
 " vim:foldmethod=marker:foldlevel=0

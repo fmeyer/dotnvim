@@ -18,6 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " colorschemes
 Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'chriskempson/base16-vim'
 " utilities
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
@@ -98,8 +99,15 @@ Plug 'fatih/vim-go', { 'for': 'go' } " go support
 Plug 'timcharper/textile.vim', { 'for': 'textile' } " textile support
 Plug 'rust-lang/rust.vim', {'for' : 'rust'} " rust support 
 
+" C++ 
+Plug 'jalcine/cmake.vim'
+
+Plug 'sbdchd/neoformat'
+
 " Autocomplete 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'sebastianmarkow/deoplete-rust'
+Plug 'zchee/deoplete-clang'
 
 call plug#end()
 
