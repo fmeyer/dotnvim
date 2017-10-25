@@ -20,14 +20,18 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'joshdick/onedark.vim'
 Plug 'rakr/vim-one'
 Plug 'chriskempson/base16-vim'
+Plug 'reedes/vim-colors-pencil'
+Plug 'owickstrom/vim-colors-paramount'
+
 " utilities
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
+Plug 'editorconfig/editorconfig-vim' " .editorconfig support
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim' " search inside files using ack. Same as command line ack utility, but use :Ack
+
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc.
 Plug 'tpope/vim-commentary' " comment stuff out
 Plug 'tpope/vim-unimpaired' " mappings which are simply short normal mode aliases for commonly used ex commands
@@ -43,7 +47,6 @@ Plug 'tpope/vim-rhubarb' " hub extension for fugitive
 Plug 'tpope/vim-repeat' " enables repeating other supported plugins with the . command
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'editorconfig/editorconfig-vim' " .editorconfig support
 Plug 'MarcWeber/vim-addon-mw-utils' " interpret a file by function and cache file automatically
 Plug 'tomtom/tlib_vim' " utility functions for vim
 Plug 'sotte/presenting.vim', { 'for': 'markdown' } " a simple tool for presenting slides in vim based on text files
@@ -103,6 +106,10 @@ Plug 'rust-lang/rust.vim', {'for' : 'rust'} " rust support
 Plug 'jalcine/cmake.vim'
 
 Plug 'sbdchd/neoformat'
+
+" vim orgmode
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-speeddating'
 
 " Autocomplete 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
