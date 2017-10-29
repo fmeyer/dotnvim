@@ -54,11 +54,12 @@ if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 else
-  let g:onedark_termcolors=16
-  let g:onedark_terminal_italics=1
+  let base16colorspace=256
+  " let g:onedark_termcolors=16
+  " let g:onedark_terminal_italics=1
 
   set background=dark
-  colorscheme one
+  colorscheme pencil
 endif
 
 
@@ -189,6 +190,21 @@ noremap <space> :set hlsearch! hlsearch?<cr>
 " activate spell-checking alternatives
 nmap ;s :set invspell spelllang=en<cr>
 
+" invert background dark <-> light
+nmap ;b :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
+" gtk vim font factor trick FIXME: replace with a for
+nmap ;z0 :GuiFont Iosevka Term:h12<cr>
+nmap ;z1 :GuiFont Iosevka Term:h14<cr>
+nmap ;z2 :GuiFont Iosevka Term:h16<cr>
+nmap ;z3 :GuiFont Iosevka Term:h18<cr>
+nmap ;z4 :GuiFont Iosevka Term:h20<cr>
+nmap ;z5 :GuiFont Iosevka Term:h22<cr>
+nmap ;z6 :GuiFont Iosevka Term:h24<cr>
+nmap ;z7 :GuiFont Iosevka Term:h26<cr>
+nmap ;z8 :GuiFont Iosevka Term:h28<cr>
+nmap ;z9 :GuiFont Iosevka Term:h30<cr>
+
 " markdown to html
 nmap <leader>md :%!markdown --html4tags <cr>
 
@@ -299,8 +315,6 @@ augroup END
 nmap <silent> <leader>pt :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
 nmap <silent> <leader>y :NERDTreeFind<cr>
-
-map <silent> <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 let NERDTreeShowHidden=1
 let NERDTreeDirArrowExpandable = '▷'
